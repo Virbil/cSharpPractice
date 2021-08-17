@@ -8,15 +8,32 @@ namespace hungryNinja
     {
         static void Main(string[] args)
         {
-            Buffet allYouCanEat = new Buffet();
-            // Console.WriteLine(allYouCanEat.Serve().Name);
+            Buffet buffet = new Buffet();
+            SpiceHound sh = new SpiceHound();
+            SweetTooth st = new SweetTooth();
 
-            Ninja blackShadow = new Ninja();
+            while(!sh.IsFull)
+                sh.Consume(buffet.Serve());
+            
+            while(!st.IsFull)
+                st.Consume(buffet.Serve());
 
-            while(!blackShadow.IsFull)
+            Ninja winner;
+            string title;
+            if(sh.ConsumptionHistory.Count > st.ConsumptionHistory.Count)
             {
-                blackShadow.Eat(allYouCanEat.Serve());
+                winner = sh;
+                title = "Spice Hound";
+
             }
+            else
+            {
+                winner = st;
+                title = "Sweet Tooth";
+
+            }
+
+            Console.WriteLine($"{title} is the winner, with {winner.ConsumptionHistory.Count} items consumed!");
             
         }
     }
