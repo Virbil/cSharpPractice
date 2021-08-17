@@ -27,4 +27,9 @@ class Car : Vehicle, IRideable
         Console.WriteLine($"... driving your {Make} {Model}...");
         DistanceTraveled += distance;
     }
+
+    public override void MakeNoise()
+    {
+        Console.WriteLine("Beep beep!");
+    }
 }
